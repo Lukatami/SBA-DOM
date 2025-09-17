@@ -63,8 +63,6 @@ const cartItem = document.querySelector(".cartItem");
 const listPanel = document.querySelector(".listPanel");
 const clearButton = document.querySelector(".clearList");
 
-console.log(inputItem, inputPrice, addButton, userCart);
-
 const addItem = (e) => {
   cartList.push({
     id: count,
@@ -81,17 +79,26 @@ const addItem = (e) => {
 };
 
 const addRandom = (e) => {
-    
-};
-
-const deleteItem = (elementId) => {
-  cartList = cartList.filter(({ id }) => elementId != id);
+  const randomIndex = Math.floor(Math.random() * randomList.length);
+  const randomItem = randomList[randomIndex];
+  cartList.push({
+    id: count,
+    item: randomItem.name,
+    price: randomItem.price,
+  });
+  count += 1;
 
   updateCart();
 };
 
+const deleteItem = (e) => {
+  cartList = cartList.filter(({ id }) => e != id);
+  updateTotal();
+  updateCart();
+};
+
 const updateTotal = () => {
-  const total = cartList.reduce((sum, { price }) => sum + Number(price), 0);
+  const total = (cartList.reduce((sum, { price }) => sum + Number(price), 0)).toFixed(2);
   listPanel.lastElementChild.textContent = "Total: $" + total;
 };
 

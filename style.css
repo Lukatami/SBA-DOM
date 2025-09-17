@@ -56,6 +56,13 @@
     gap: 1%;
 }
 
+.itemName {
+    width: 60%;
+}
+.itemPrice {
+    width: 10%;
+}
+
 .listPanel {
    height: 15%;
    display: flex;
