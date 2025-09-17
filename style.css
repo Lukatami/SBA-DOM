@@ -2,7 +2,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 97vh;
 }
 
 .mainScreen {
@@ -71,4 +71,8 @@ button {
     color: #4F5D75;
     border: 0;
     border-radius: 5px;
+}
+
+#error {
+    background-color: red;
 }

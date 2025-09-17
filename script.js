@@ -63,7 +63,18 @@ const cartItem = document.querySelector(".cartItem");
 const listPanel = document.querySelector(".listPanel");
 const clearButton = document.querySelector(".clearList");
 
+const error = document.getElementById("error")
+
 const addItem = (e) => {
+
+  if (inputItem.value.length < 2) {
+    error.textContent = "The name is too short";
+    setTimeout(() => {
+      error.textContent = "";
+    }, 1000);
+    return;
+  }
+
   cartList.push({
     id: count,
     item: inputItem.value,
@@ -79,6 +90,12 @@ const addItem = (e) => {
 };
 
 const addRandom = (e) => {
+  e.preventDefault();
+
+  if (inputItem.value.length < 2) {
+    
+  }
+
   const randomIndex = Math.floor(Math.random() * randomList.length);
   const randomItem = randomList[randomIndex];
   cartList.push({
@@ -98,7 +115,9 @@ const deleteItem = (e) => {
 };
 
 const updateTotal = () => {
-  const total = (cartList.reduce((sum, { price }) => sum + Number(price), 0)).toFixed(2);
+  const total = cartList
+    .reduce((sum, { price }) => sum + Number(price), 0)
+    .toFixed(2);
   listPanel.lastElementChild.textContent = "Total: $" + total;
 };
 
@@ -111,7 +130,6 @@ const updateCart = () => {
     newCartItem.firstElementChild.nextElementSibling.textContent = "$" + price;
 
     const removeButton = newCartItem.lastElementChild;
-
     removeButton.addEventListener("click", () => deleteItem(id));
 
     userCart.append(newCartItem);
@@ -120,16 +138,32 @@ const updateCart = () => {
 };
 
 const clearCart = () => {
-  const userResponse = confirm("Are you sure you want to empty cart?");
-  if (userResponse) {
-    cartList = [];
-    total = 0;
-    updateCart();
-    updateTotal();
+  if (cartList.length == 0) {
+    alert("Cart is empty. Nothing to clear");
   } else {
+    const userResponse = confirm("Are you sure you want to empty cart?");
+    if (userResponse) {
+      cartList = [];
+      total = 0;
+      updateCart();
+      updateTotal();
+    }
   }
 };
 
 addRandomButton.addEventListener("click", addRandom);
 addButton.addEventListener("click", addItem);
 clearButton.addEventListener("click", clearCart);
+
+clearButton.addEventListener("mouseover", (e) => {
+  e.target.style.backgroundColor = "red";
+});
+clearButton.addEventListener("mouseleave", (e) => {
+  e.target.style.backgroundColor = "";
+});
+inputItem.addEventListener("focus", () => {
+  inputItem.setAttribute("placeholder", "Enter product name...");
+});
+inputPrice.addEventListener("focus", () => {
+  inputPrice.setAttribute("placeholder", "Enter price");
+});
