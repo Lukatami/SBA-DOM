@@ -63,12 +63,27 @@ const cartItem = document.querySelector(".cartItem");
 const listPanel = document.querySelector(".listPanel");
 const clearButton = document.querySelector(".clearList");
 
-const error = document.getElementById("error")
+const error = document.getElementById("error");
 
 const addItem = (e) => {
-
   if (inputItem.value.length < 2) {
     error.textContent = "The name is too short";
+    setTimeout(() => {
+      error.textContent = "";
+    }, 1000);
+    return;
+  }
+
+  if (!inputPrice.value) {
+    error.textContent = "Price can't be empty";
+    setTimeout(() => {
+      error.textContent = "";
+    }, 1000);
+    return;
+  }
+
+  if (inputPrice.value < 0) {
+    error.textContent = "Price can't be negative";
     setTimeout(() => {
       error.textContent = "";
     }, 1000);
@@ -93,7 +108,6 @@ const addRandom = (e) => {
   e.preventDefault();
 
   if (inputItem.value.length < 2) {
-    
   }
 
   const randomIndex = Math.floor(Math.random() * randomList.length);
