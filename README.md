@@ -65,7 +65,7 @@ It also includes **basic input validation, error messages, and fun UI interactio
 ---
 
 ## 🎲 Cool Feature
-Example Random Products
+### Example Random Products
 Some of the items in the pre-built random list:
 
 ```bash
