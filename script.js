@@ -56,6 +56,7 @@ let randomList = [
 ];
 
 // Get all needed elements selectors
+const mainScreen = document.querySelector(".mainScreen");
 const addRandomButton = document.querySelector(".random");
 const inputItem = document.getElementById("inputItem");
 const inputPrice = document.getElementById("inputPrice");
@@ -67,7 +68,11 @@ const cartItem = document.querySelector(".cartItem");
 const listPanel = document.querySelector(".listPanel");
 const clearButton = document.querySelector(".clearList");
 
-const error = document.getElementById("error");
+
+// Create new error element
+const error = document.createElement("div");
+mainScreen.appendChild(error);
+error.id = "error";
 
 // Main feature of adding item to the list
 const addItem = (e) => {
