@@ -5,6 +5,10 @@
     min-height: 97vh;
 }
 
+input {
+    border: 0;
+}
+
 .mainScreen {
     background-color: #BFC0C0;
     color: #2D3142;
@@ -13,7 +17,6 @@
     padding: 1em;
     border-radius: 5%;
     box-shadow: 0 0 10px 1px;
-    color: #FFFFFF;
 }
 
 .title {
